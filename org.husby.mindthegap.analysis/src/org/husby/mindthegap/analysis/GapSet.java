@@ -5,6 +5,7 @@ import java.util.LinkedList;
 public class GapSet {
 
 	private LinkedList<Gap> gaps;
+	private User user;
 
 	public GapSet() {
 		super();
@@ -21,6 +22,14 @@ public class GapSet {
 
 	public Object size() {
 		return gaps.size();
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 }

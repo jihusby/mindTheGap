@@ -6,11 +6,14 @@ public class Gap {
 	private int wanted;
 	private int upperBound = 4;
 	private boolean trainingRequested;
-	private User user;
+	private Topic topic;
 
 	public Gap(int current, int wanted) {
 		if(isUpperBoundExeeded(current, wanted, upperBound)){
-			throw new UpperBoundExeeded();
+			throw new UpperBoundExeededException();
+		}
+		if(isNegativeValues(current, wanted)){
+			throw new NegativeValuesException();
 		}
 		this.current = current;
 		this.wanted = wanted;
@@ -39,16 +42,12 @@ public class Gap {
 		return trainingRequested;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
 	private boolean isExpert(int current) {
 		return current==upperBound;
+	}
+
+	private boolean isNegativeValues(int current, int wanted) {
+		return (current < 0) || wanted < 0;
 	}
 	
 	private boolean isUpperBoundExeeded(int current, int wanted, int upperBound) {
@@ -56,9 +55,20 @@ public class Gap {
 	}
 		
 
-	public static class UpperBoundExeeded extends RuntimeException {
+	public static class NegativeValuesException extends RuntimeException {
+		private static final long serialVersionUID = -4159711657903452472L;
+	}
+
+	public static class UpperBoundExeededException extends RuntimeException {
 		private static final long serialVersionUID = 3707181085491854994L;
 	}
-	
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
+
+	public Object getTopic() {
+		return topic;
+	}
 	
 }

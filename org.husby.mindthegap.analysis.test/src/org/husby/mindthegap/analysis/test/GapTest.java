@@ -1,10 +1,13 @@
 package org.husby.mindthegap.analysis.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.husby.mindthegap.analysis.Gap;
-import org.husby.mindthegap.analysis.Gap.UpperBoundExeeded;
-import org.husby.mindthegap.analysis.User;
+import org.husby.mindthegap.analysis.Gap.NegativeValuesException;
+import org.husby.mindthegap.analysis.Gap.UpperBoundExeededException;
+import org.husby.mindthegap.analysis.Topic;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,14 +51,20 @@ public class GapTest {
 		assertEquals(1, gap.getGapResult());
 	}
 	
-	@Test(expected=UpperBoundExeeded.class)
-	public void testUpperCurrentBoundaryMaxFour() {
+	@Test(expected=UpperBoundExeededException.class)
+	public void testGapWithToHighCurrent_ReturnsUpperBoundExeededException() {
 		createGapWithCurrentAndWanted(5, 1);
 	}
 
-	@Test(expected=UpperBoundExeeded.class)
-	public void testUpperWantedBoundaryMaxFour() {
+	@Test(expected=UpperBoundExeededException.class)
+	public void testGapWithToHighWanted_ReturnsUpperBoundExeededException() {
 		createGapWithCurrentAndWanted(1, 5);
+	}
+	
+	@Test(expected=NegativeValuesException.class)
+	public void testGapWithNegativeValues_ReturnsNegativeValuesException() {
+		createGapWithCurrentAndWanted(-1, -1);
+		
 	}
 	
 	@Test
@@ -73,19 +82,19 @@ public class GapTest {
 	}
 
 	@Test
-	public void testGapWithUser_ReturnsCorrectUser() {
-		createGapWithCurrentAndWanted(1, 4);
-		User user = new User("Jan Inge");
-		gap.setUser(user);
-		assertEquals(user, gap.getUser());
-	}
-	
-	@Test
 	public void testGivenCurrentIsMax_TrainingIsNotRequested() {
 		createGapWithCurrentAndWanted(3, 4);
 		gap.setTrainingRequest(true);
 		gap.setCurrent(4);
 		assertFalse(gap.isTrainingRequested());
+	}
+	
+	@Test
+	public void testGapWithTopicIsCreated() {
+		createGapWithCurrentAndWanted(1, 2);
+		Topic topic = new Topic("Java");
+		gap.setTopic(topic);
+		assertEquals(topic, gap.getTopic());
 	}
 	
 	private void createGapWithCurrentAndWanted(int current, int wanted) {
