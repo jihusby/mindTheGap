@@ -2,9 +2,14 @@ package org.husby.mindthegap.analysis;
 
 public class User {
 
-	public void setName(String string) {
-		// TODO Auto-generated method stub
-		
+	private String name;
+
+	public User(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }
