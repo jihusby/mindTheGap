@@ -4,3 +4,4 @@ Bundle-Name: Analysis
 Bundle-SymbolicName: org.husby.mindthegap.analysis
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.husby.mindthegap.analysis
