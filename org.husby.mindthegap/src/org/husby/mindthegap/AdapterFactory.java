@@ -3,7 +3,6 @@ package org.husby.mindthegap;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.model.IWorkbenchAdapter;
-import org.eclipse.ui.model.WorkbenchAdapter;
 
 public class AdapterFactory implements IAdapterFactory {
 
@@ -11,12 +10,13 @@ public class AdapterFactory implements IAdapterFactory {
 		
 		@Override
 		public Object getParent(Object o) {
-			return ((TopicType)o).getParent();
+			return ((TopicsGroup)o).getParent();
 		}
 		
 		@Override
 		public String getLabel(Object o) {
-			return ((TopicType)o).getName();
+			TopicsGroup group = ((TopicsGroup)o);
+			return group.getName();
 		}
 		
 		@Override
@@ -26,7 +26,7 @@ public class AdapterFactory implements IAdapterFactory {
 		
 		@Override
 		public Object[] getChildren(Object o) {
-			return ((TopicType)o).getEntries();
+			return ((TopicsGroup)o).getEntries();
 		}
 	};
 	
@@ -56,7 +56,7 @@ public class AdapterFactory implements IAdapterFactory {
 	@Override
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
 		if(adapterType == IWorkbenchAdapter.class && 
-				adaptableObject instanceof TopicType){
+				adaptableObject instanceof TopicsGroup){
 			return groupAdapter;
 		}
 		
@@ -69,8 +69,7 @@ public class AdapterFactory implements IAdapterFactory {
 
 	@Override
 	public Class[] getAdapterList() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Class[] {IWorkbenchAdapter.class};
 	}
 
 }

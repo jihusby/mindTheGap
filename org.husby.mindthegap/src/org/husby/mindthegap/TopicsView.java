@@ -15,8 +15,7 @@ public class TopicsView extends ViewPart {
 			"org.husby.mindthegap.views.topics";
 	
 	private TreeViewer treeViewer;
-	private TopicType topicType;
-	
+	private Session session;
 
 	public TopicsView() {
 		super();
@@ -31,18 +30,24 @@ public class TopicsView extends ViewPart {
 		getSite().setSelectionProvider(treeViewer);
 		treeViewer.setLabelProvider(new WorkbenchLabelProvider());
 		treeViewer.setContentProvider(new BaseWorkbenchContentProvider());
-		treeViewer.setInput(topicType);
-//		topicType.getTopics().addTopicsListener(new ITopicsListener() {
-//			public void topicsChanged(TopicType topics, TopicEntry entry) {
-//				treeViever.refresh();
-//			}
-//		});
+		treeViewer.setInput(session.getRoot());
+		session.getRoot().addTopicListener(new ITopicsListener(){
+			@Override
+			public void topicsChanged(TopicsGroup topics, TopicEntry entry) {
+				treeViewer.refresh();
+			}
+		});
 	}
 
 	private void initializeBogusTopics() {
-		topicType = new TopicType();
-		topicType.initTopics();
-		
+		session = new Session();
+		TopicsGroup root = session.getRoot();
+		TopicsGroup languageGroup = new TopicsGroup(root, "Programming languages");
+		languageGroup.addEntry(new TopicEntry(languageGroup, "Java"));
+		languageGroup.addEntry(new TopicEntry(languageGroup, "C++"));
+		languageGroup.addEntry(new TopicEntry(languageGroup, "Pascal"));
+		languageGroup.addEntry(new TopicEntry(languageGroup, "Cobol"));
+		root.addEntry(languageGroup);
 	}
 
 	@Override
