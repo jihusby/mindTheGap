@@ -22,7 +22,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.husby.mindthegap.TopicsView"
+            class="org.husby.mindthegap.views.TopicsView"
             icon="icons/alt_window_16.gif"
             id="org.husby.mindthegap.views.topics"
             name="Topics"

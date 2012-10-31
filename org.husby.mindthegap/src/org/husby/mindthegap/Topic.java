@@ -1,15 +1,33 @@
 package org.husby.mindthegap;
 
 public class Topic {
+	  private String summary = "";
+	  private String description = "";
 
-	private Object name;
+	  public Topic(String summary) {
+	    this.summary = summary;
+	  }
 
-	public Topic(String name) {
-		this.name = name;
+	  public Topic(String summary, String description) {
+	    this.summary = summary;
+	    this.description = description;
+
+	  }
+
+	  public String getSummary() {
+	    return summary;
+	  }
+
+	  public void setSummary(String summary) {
+	    this.summary = summary;
+	  }
+
+	  public String getDescription() {
+	    return description;
+	  }
+
+	  public void setDescription(String description) {
+	    this.description = description;
+	  }
+
 	}
-
-	public Object getName() {
-		return name;
-	}
-
-}
