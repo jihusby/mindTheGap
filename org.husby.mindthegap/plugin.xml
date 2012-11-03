@@ -7,7 +7,7 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="org.husby.mindthegap.Application">
+               class="org.husby.mindthegap.application.Application">
          </run>
       </application>
    </extension>
@@ -15,7 +15,7 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             name="RCP Perspective"
-            class="org.husby.mindthegap.Perspective"
+            class="org.husby.mindthegap.perspectives.MainPerspective"
             id="org.husby.mindthegap.perspective">
       </perspective>
    </extension>
@@ -28,6 +28,22 @@
             name="Topics"
             restorable="true">
       </view>
+      <view
+            class="org.husby.mindthegap.views.GapDetailView"
+            icon="icons/alt_window_16.gif"
+            id="org.husby.mindthegap.views.gapdetail"
+            name="GapDetail"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.husby.mindthegap.editors.GapEditor"
+            default="false"
+            id="org.husby.mindthegap.editors.gap"
+            name="Gap">
+      </editor>
    </extension>
 
 </plugin>

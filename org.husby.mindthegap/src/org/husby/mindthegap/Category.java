@@ -27,4 +27,8 @@ public class Category {
   public List<Topic> getTopics() {
     return topics;
   }
+  
+  public void addTopic(Topic topic) {
+	  topics.add(topic);
+  }
 } 

@@ -2,25 +2,25 @@ package org.husby.mindthegap.views;
 
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
-import org.husby.mindthegap.Session;
+import org.husby.mindthegap.Topic;
 import org.husby.mindthegap.TopicContentProvider;
 import org.husby.mindthegap.TopicLabelProvider;
 import org.husby.mindthegap.TopicMockModel;
-import org.husby.mindthegap.Topic;
 
 public class TopicsView extends ViewPart {
 	
 	public static final String ID = "org.husby.mindthegap.views.topics";
 	
 	private TreeViewer treeViewer;
-	private Session session;
 
 	public TopicsView() {
 		super();
@@ -34,6 +34,7 @@ public class TopicsView extends ViewPart {
 	    treeViewer.setAutoExpandLevel(2);
 	    // Provide the input to the ContentProvider
 	    treeViewer.setInput(new TopicMockModel());
+	    getSite().setSelectionProvider(treeViewer);
 
 	    // Add a doubleclicklistener
 	    treeViewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -48,6 +49,14 @@ public class TopicsView extends ViewPart {
 	            !viewer.getExpandedState(selectedNode));
 	      }
 	    });
+	    
+	    treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				System.out.println("Selection changed");
+			}
+		});
 
 	    treeViewer.getTree().addKeyListener(new KeyAdapter() {
 	      @Override

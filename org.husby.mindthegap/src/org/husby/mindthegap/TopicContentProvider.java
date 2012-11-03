@@ -42,5 +42,5 @@ public class TopicContentProvider implements ITreeContentProvider {
     }
     return false;
   }
-
+  
 } 
