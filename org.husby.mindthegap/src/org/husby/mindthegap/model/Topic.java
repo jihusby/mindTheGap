@@ -1,4 +1,4 @@
-package org.husby.mindthegap;
+package org.husby.mindthegap.model;
 
 public class Topic {
 	  private String summary = "";

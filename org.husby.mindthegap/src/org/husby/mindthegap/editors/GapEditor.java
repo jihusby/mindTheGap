@@ -2,7 +2,11 @@ package org.husby.mindthegap.editors;
 
 import java.util.Date;
 
+import javax.swing.event.DocumentEvent.EventType;
+
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -51,6 +55,8 @@ public class GapEditor extends EditorPart {
 		GridData gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
 		gridData.heightHint = entry.getLineHeight() * 4;
 		entry.setLayoutData(gridData);
+		
+		
 		entry.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent event) {
 				if(event.character == SWT.CR) {

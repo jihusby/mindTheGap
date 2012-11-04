@@ -1,7 +1,8 @@
-package org.husby.mindthegap;
+package org.husby.mindthegap.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Category {
   private String name;

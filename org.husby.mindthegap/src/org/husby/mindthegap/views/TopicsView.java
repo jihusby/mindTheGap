@@ -11,73 +11,71 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
-import org.husby.mindthegap.Topic;
 import org.husby.mindthegap.TopicContentProvider;
 import org.husby.mindthegap.TopicLabelProvider;
 import org.husby.mindthegap.TopicMockModel;
+import org.husby.mindthegap.model.Topic;
 
 public class TopicsView extends ViewPart {
-	
+
 	public static final String ID = "org.husby.mindthegap.views.topics";
-	
-	private TreeViewer treeViewer;
+
+	private TreeViewer topicsTreeViewer;
 
 	public TopicsView() {
 		super();
 	}
 
-	  public void createPartControl(Composite parent) {
-	    treeViewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-	    treeViewer.setContentProvider(new TopicContentProvider());
-	    treeViewer.setLabelProvider(new TopicLabelProvider());
-	    // Expand the tree
-	    treeViewer.setAutoExpandLevel(2);
-	    // Provide the input to the ContentProvider
-	    treeViewer.setInput(new TopicMockModel());
-	    getSite().setSelectionProvider(treeViewer);
+	public void createPartControl(Composite parent) {
+		topicsTreeViewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL
+				| SWT.V_SCROLL);
+		topicsTreeViewer.setContentProvider(new TopicContentProvider());
+		topicsTreeViewer.setLabelProvider(new TopicLabelProvider());
+		topicsTreeViewer.setAutoExpandLevel(2);
+		topicsTreeViewer.setInput(new TopicMockModel());
+		getSite().setSelectionProvider(topicsTreeViewer);
 
-	    // Add a doubleclicklistener
-	    treeViewer.addDoubleClickListener(new IDoubleClickListener() {
+		topicsTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
-	      @Override
-	      public void doubleClick(DoubleClickEvent event) {
-	        TreeViewer viewer = (TreeViewer) event.getViewer();
-	        IStructuredSelection thisSelection = (IStructuredSelection) event
-	            .getSelection();
-	        Object selectedNode = thisSelection.getFirstElement();
-	        viewer.setExpandedState(selectedNode,
-	            !viewer.getExpandedState(selectedNode));
-	      }
-	    });
-	    
-	    treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-			
 			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				System.out.println("Selection changed");
+			public void doubleClick(DoubleClickEvent event) {
+				TreeViewer viewer = (TreeViewer) event.getViewer();
+				IStructuredSelection thisSelection = (IStructuredSelection) event
+						.getSelection();
+				Object selectedNode = thisSelection.getFirstElement();
+				viewer.setExpandedState(selectedNode,
+						!viewer.getExpandedState(selectedNode));
 			}
 		});
 
-	    treeViewer.getTree().addKeyListener(new KeyAdapter() {
-	      @Override
-	      public void keyReleased(final KeyEvent e) {
-	        if (e.keyCode == SWT.DEL) {
-	          final IStructuredSelection selection = (IStructuredSelection) treeViewer
-	              .getSelection();
-	          if (selection.getFirstElement() instanceof Topic) {
-	            Topic o = (Topic) selection.getFirstElement();
-	            // TODO Delete the selected element from the model
-	          }
+		topicsTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-	        }
-	      }
-	    });
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				System.out.println("TopicsView.selectionChanged");
+			}
+		});
 
-	  }
+		topicsTreeViewer.getTree().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(final KeyEvent e) {
+				if (e.keyCode == SWT.DEL) {
+					final IStructuredSelection selection = (IStructuredSelection) topicsTreeViewer
+							.getSelection();
+					if (selection.getFirstElement() instanceof Topic) {
+						Topic o = (Topic) selection.getFirstElement();
+						// TODO Delete the selected element from the model
+					}
+
+				}
+			}
+		});
+
+	}
 
 	@Override
 	public void setFocus() {
-		treeViewer.getControl().setFocus();
+		topicsTreeViewer.getControl().setFocus();
 	}
 
 }

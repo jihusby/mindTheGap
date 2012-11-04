@@ -7,6 +7,8 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
+import org.husby.mindthegap.actions.AddTopicAction;
+import org.husby.mindthegap.actions.GapDetailAction;
 
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	

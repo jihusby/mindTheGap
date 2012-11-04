@@ -4,6 +4,8 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
+import org.husby.mindthegap.model.Category;
+import org.husby.mindthegap.model.Topic;
 
 public class TopicLabelProvider extends LabelProvider {
   
