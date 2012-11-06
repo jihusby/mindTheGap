@@ -13,8 +13,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.husby.mindthegap.TopicContentProvider;
 import org.husby.mindthegap.TopicLabelProvider;
-import org.husby.mindthegap.TopicMockModel;
 import org.husby.mindthegap.model.Topic;
+import org.husby.mindthegap.persistence.TopicMockModel;
 
 public class TopicsView extends ViewPart {
 

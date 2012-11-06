@@ -35,6 +35,13 @@
             name="GapDetail"
             restorable="true">
       </view>
+      <view
+            class="org.husby.mindthegap.views.GapSummaryView"
+            icon="icons/alt_window_16.gif"
+            id="org.husby.mindthegap.views.gapsummary"
+            name="GapSummary"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.editors">

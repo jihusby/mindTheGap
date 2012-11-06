@@ -1,4 +1,4 @@
-package org.husby.mindthegap;
+package org.husby.mindthegap.persistence;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -18,9 +18,9 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     
     public void preWindowOpen() {
         IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-        configurer.setInitialSize(new Point(300, 400));
+        configurer.setInitialSize(new Point(400, 600));
         configurer.setShowMenuBar(true);
-        configurer.setShowStatusLine(true);
+        configurer.setShowStatusLine(false);
         configurer.setTitle("Mind The Gap"); //$NON-NLS-1$
     }
 }

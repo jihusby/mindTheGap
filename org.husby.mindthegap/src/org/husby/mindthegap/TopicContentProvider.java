@@ -3,6 +3,7 @@ package org.husby.mindthegap;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.husby.mindthegap.model.Category;
+import org.husby.mindthegap.persistence.TopicMockModel;
 
 public class TopicContentProvider implements ITreeContentProvider {
 
